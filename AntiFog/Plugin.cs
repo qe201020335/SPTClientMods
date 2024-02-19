@@ -49,34 +49,16 @@ public class Plugin : BaseUnityPlugin
 
     private void Start()
     {
-        string AmandsExperimental = "AmandsGraphics Experimental";
-        string AmandsFeatures = "AmandsGraphics Features";
-
-        GraphicsToggle = Config.Bind(AmandsFeatures, "GraphicsToggle", new KeyboardShortcut(KeyCode.Insert),
-            new ConfigDescription("", null, new ConfigurationManagerAttributes { Order = 610 }));
-        NVGCustomGlobalFogIntensity = Config.Bind(AmandsExperimental, "NVG CustomGlobalFog Intensity", 0.5f,
-            new ConfigDescription("", null, new ConfigurationManagerAttributes { Order = 100, IsAdvanced = true }));
-        CustomGlobalFogIntensity = Config.Bind(AmandsFeatures, "CustomGlobalFog Intensity", 0.1f,
-            new ConfigDescription("", null, new ConfigurationManagerAttributes { Order = 270, IsAdvanced = true }));
-
-        StreetsFogLevel = Config.Bind("Streets", "Fog Level", -250.0f,
-            new ConfigDescription("", null, new ConfigurationManagerAttributes { Order = 160 }));
-        CustomsFogLevel = Config.Bind("Customs", "Fog Level", -100.0f,
-            new ConfigDescription("", null, new ConfigurationManagerAttributes { Order = 160 }));
-
-        LighthouseFogLevel = Config.Bind("Lighthouse", "Fog Level", -100.0f,
-            new ConfigDescription("", null, new ConfigurationManagerAttributes { Order = 160 }));
-        InterchangeFogLevel = Config.Bind("Interchange", "Fog Level", -100.0f,
-            new ConfigDescription("", null, new ConfigurationManagerAttributes { Order = 160 }));
-
-        WoodsFogLevel = Config.Bind("Woods", "Fog Level", -100.0f,
-            new ConfigDescription("", null, new ConfigurationManagerAttributes { Order = 160 }));
-
-        ReserveFogLevel = Config.Bind("Reserve", "Fog Level", -100.0f,
-            new ConfigDescription("", null, new ConfigurationManagerAttributes { Order = 160 }));
-
-        ShorelineFogLevel = Config.Bind("Shoreline", "Fog Level", -100.0f,
-            new ConfigDescription("", null, new ConfigurationManagerAttributes { Order = 160 }));
+        GraphicsToggle = Config.Bind("General", "GraphicsToggle", new KeyboardShortcut(KeyCode.Insert));
+        NVGCustomGlobalFogIntensity = Config.Bind("General", "NVG CustomGlobalFog Intensity", 0.05f);
+        CustomGlobalFogIntensity = Config.Bind("General", "CustomGlobalFog Intensity", 0.01f);
+        StreetsFogLevel = Config.Bind("Maps", "Streets Fog Level", -2500.0f);
+        CustomsFogLevel = Config.Bind("Maps", "Customs Fog Level", -1000.0f);
+        LighthouseFogLevel = Config.Bind("Maps", "Lighthouse Fog Level", -1000.0f);
+        InterchangeFogLevel = Config.Bind("Maps", "Interchange Fog Level", -1000.0f);
+        WoodsFogLevel = Config.Bind("Maps", "Woods Fog Level", -1000.0f);
+        ReserveFogLevel = Config.Bind("Maps", "Reserve Fog Level", -1000.0f);
+        ShorelineFogLevel = Config.Bind("Maps", "Shoreline Fog Level", -1000.0f);
 
         new LocalPlayerPatch().Enable();
         new NightVisionPatch().Enable();
