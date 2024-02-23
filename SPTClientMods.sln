@@ -4,6 +4,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AntiFog", "AntiFog\AntiFog.
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "YeetAntiMod", "YeetAntiMod\YeetAntiMod.csproj", "{92F5A0FF-C4E5-4207-A0EA-24BF347211D4}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SkeletonKey", "SkeletonKey\SkeletonKey.csproj", "{B7D64D02-D812-41ED-8D41-0AE0CFBCB447}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -18,5 +20,9 @@ Global
 		{92F5A0FF-C4E5-4207-A0EA-24BF347211D4}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{92F5A0FF-C4E5-4207-A0EA-24BF347211D4}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{92F5A0FF-C4E5-4207-A0EA-24BF347211D4}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B7D64D02-D812-41ED-8D41-0AE0CFBCB447}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B7D64D02-D812-41ED-8D41-0AE0CFBCB447}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B7D64D02-D812-41ED-8D41-0AE0CFBCB447}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B7D64D02-D812-41ED-8D41-0AE0CFBCB447}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal
