@@ -1,7 +1,11 @@
 ﻿using System.Reflection;
 using System.Threading.Tasks;
-using Aki.Reflection.Patching;
 using EFT;
+#if SIT
+using StayInTarkov;
+#elif AKI
+using Aki.Reflection.Patching;
+#endif
 
 namespace AntiFog.Patches;
 

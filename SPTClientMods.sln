@@ -8,21 +8,19 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SkeletonKey", "SkeletonKey\
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
-		Debug|Any CPU = Debug|Any CPU
-		Release|Any CPU = Release|Any CPU
+		Debug SIT|Any CPU = Debug SIT|Any CPU
+		Debug AKi|Any CPU = Debug AKi|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{F1B981FB-2D96-4F71-A08F-4EE3B37AC850}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{F1B981FB-2D96-4F71-A08F-4EE3B37AC850}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{F1B981FB-2D96-4F71-A08F-4EE3B37AC850}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{F1B981FB-2D96-4F71-A08F-4EE3B37AC850}.Release|Any CPU.Build.0 = Release|Any CPU
-		{92F5A0FF-C4E5-4207-A0EA-24BF347211D4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{92F5A0FF-C4E5-4207-A0EA-24BF347211D4}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{92F5A0FF-C4E5-4207-A0EA-24BF347211D4}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{92F5A0FF-C4E5-4207-A0EA-24BF347211D4}.Release|Any CPU.Build.0 = Release|Any CPU
-		{B7D64D02-D812-41ED-8D41-0AE0CFBCB447}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{B7D64D02-D812-41ED-8D41-0AE0CFBCB447}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{B7D64D02-D812-41ED-8D41-0AE0CFBCB447}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{B7D64D02-D812-41ED-8D41-0AE0CFBCB447}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F1B981FB-2D96-4F71-A08F-4EE3B37AC850}.Debug SIT|Any CPU.ActiveCfg = Debug SIT|Any CPU
+		{F1B981FB-2D96-4F71-A08F-4EE3B37AC850}.Debug SIT|Any CPU.Build.0 = Debug SIT|Any CPU
+		{F1B981FB-2D96-4F71-A08F-4EE3B37AC850}.Debug AKi|Any CPU.ActiveCfg = Debug AKi|Any CPU
+		{F1B981FB-2D96-4F71-A08F-4EE3B37AC850}.Debug AKi|Any CPU.Build.0 = Debug AKi|Any CPU
+		{B7D64D02-D812-41ED-8D41-0AE0CFBCB447}.Debug SIT|Any CPU.ActiveCfg = Debug SIT|Any CPU
+		{B7D64D02-D812-41ED-8D41-0AE0CFBCB447}.Debug SIT|Any CPU.Build.0 = Debug SIT|Any CPU
+		{B7D64D02-D812-41ED-8D41-0AE0CFBCB447}.Debug AKi|Any CPU.ActiveCfg = Debug AKi|Any CPU
+		{B7D64D02-D812-41ED-8D41-0AE0CFBCB447}.Debug AKi|Any CPU.Build.0 = Debug AKi|Any CPU
+		{92F5A0FF-C4E5-4207-A0EA-24BF347211D4}.Debug AKi|Any CPU.ActiveCfg = Debug|Any CPU
+		{92F5A0FF-C4E5-4207-A0EA-24BF347211D4}.Debug AKi|Any CPU.Build.0 = Debug|Any CPU
 	EndGlobalSection
 EndGlobal

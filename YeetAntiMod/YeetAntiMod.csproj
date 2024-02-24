@@ -28,19 +28,19 @@
 
   <ItemGroup>
     <Reference Include="aki-core">
-      <HintPath>..\References\aki-core.dll</HintPath>
+      <HintPath>..\References.aki\aki-core.dll</HintPath>
       <Private>False</Private>
     </Reference>
     <Reference Include="Aki.Reflection">
-      <HintPath>..\References\Aki.Reflection.dll</HintPath>
+      <HintPath>..\References.aki\Aki.Reflection.dll</HintPath>
       <Private>False</Private>
     </Reference>
     <Reference Include="UnityEngine">
-      <HintPath>..\References\UnityEngine.dll</HintPath>
+      <HintPath>..\References.aki\UnityEngine.dll</HintPath>
       <Private>False</Private>
     </Reference>
     <Reference Include="UnityEngine.CoreModule">
-      <HintPath>..\References\UnityEngine.CoreModule.dll</HintPath>
+      <HintPath>..\References.aki\UnityEngine.CoreModule.dll</HintPath>
       <Private>False</Private>
     </Reference>
   </ItemGroup>

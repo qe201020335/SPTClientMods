@@ -1,7 +1,5 @@
 <Project Sdk="Microsoft.NET.Sdk">
-
   <PropertyGroup>
-    <TargetFramework>net471</TargetFramework>
     <AssemblyName>qe201020335.github.com.antifog</AssemblyName>
     <Description>Fog Be Gone</Description>
     <Version>1.0.0</Version>
@@ -14,7 +12,41 @@
       https://nuget.samboy.dev/v3/index.json
     </RestoreAdditionalProjectSources>
     <RootNamespace>AntiFog</RootNamespace>
+    <Configurations>Debug SIT;Debug AKi</Configurations>
+    <Platforms>AnyCPU</Platforms>
   </PropertyGroup>
+
+  <Choose>
+    <When Condition=" '$(Configuration)'=='Debug SIT' ">
+      <PropertyGroup>
+        <DefineConstants>SIT</DefineConstants>
+        <TargetFramework>net472</TargetFramework>
+        <RefDir>..\References.sit</RefDir>
+      </PropertyGroup>
+
+      <ItemGroup>
+        <Reference Include="StayInTarkov">
+          <HintPath>$(RefDir)\StayInTarkov.dll</HintPath>
+          <Private>False</Private>
+        </Reference>
+      </ItemGroup>
+    </When>
+
+    <When Condition=" '$(Configuration)'=='Debug AKi' ">
+      <PropertyGroup>
+        <DefineConstants>AKI</DefineConstants>
+        <TargetFramework>net471</TargetFramework>
+        <RefDir>..\References.aki</RefDir>
+      </PropertyGroup>
+
+      <ItemGroup>
+        <Reference Include="Aki.Reflection">
+          <HintPath>$(RefDir)\Aki.Reflection.dll</HintPath>
+          <Private>False</Private>
+        </Reference>
+      </ItemGroup>
+    </When>
+  </Choose>
 
   <ItemGroup>
     <PackageReference Include="BepInEx.Analyzers" Version="1.*" PrivateAssets="all"/>
@@ -27,24 +59,24 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Reference Include="Aki.Reflection">
-      <HintPath>..\References\Aki.Reflection.dll</HintPath>
+    <Reference Include="0Harmony">
+      <HintPath>$(RefDir)\0Harmony.dll</HintPath>
       <Private>False</Private>
     </Reference>
     <Reference Include="Assembly-CSharp">
-      <HintPath>..\References\Assembly-CSharp.dll</HintPath>
+      <HintPath>$(RefDir)\Assembly-CSharp.dll</HintPath>
       <Private>False</Private>
     </Reference>
     <Reference Include="UnityEngine">
-      <HintPath>..\References\UnityEngine.dll</HintPath>
+      <HintPath>$(RefDir)\UnityEngine.dll</HintPath>
       <Private>False</Private>
     </Reference>
     <Reference Include="UnityEngine.CoreModule">
-      <HintPath>..\References\UnityEngine.CoreModule.dll</HintPath>
+      <HintPath>$(RefDir)\UnityEngine.CoreModule.dll</HintPath>
       <Private>False</Private>
     </Reference>
     <Reference Include="UnityEngine.InputLegacyModule">
-      <HintPath>..\References\UnityEngine.InputLegacyModule.dll</HintPath>
+      <HintPath>$(RefDir)\UnityEngine.InputLegacyModule.dll</HintPath>
       <Private>False</Private>
     </Reference>
   </ItemGroup>
