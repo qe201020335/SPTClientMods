@@ -13,7 +13,7 @@ public class NightVisionPatch : ModulePatch
     protected override MethodBase GetTargetMethod()
     {
         return typeof(BSG.CameraEffects.NightVision)
-            .GetMethods(BindingFlags.Instance | BindingFlags.Public)
+            .GetMethods(BindingFlags.Public | BindingFlags.NonPublic | BindingFlags.Instance)
             .First(x => x.GetParameters().Count() == 1 && x.GetParameters()[0].Name == "on" && x.Name != "StartSwitch");
     }
     

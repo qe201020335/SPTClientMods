@@ -13,7 +13,7 @@ public class LocalPlayerPatch : ModulePatch
 {
     protected override MethodBase GetTargetMethod()
     {
-        return typeof(LocalPlayer).GetMethod("Create", BindingFlags.Static | BindingFlags.Public);
+        return typeof(LocalPlayer).GetMethod("Create", BindingFlags.Public | BindingFlags.NonPublic | BindingFlags.Static);
     }
     
     [PatchPostfix]

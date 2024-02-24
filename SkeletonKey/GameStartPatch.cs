@@ -19,7 +19,7 @@ public class GameStartPatch : ModulePatch
 
     protected override MethodBase GetTargetMethod()
     {
-        return typeof(GameWorld).GetMethod("OnGameStarted", BindingFlags.Public | BindingFlags.Instance);
+        return typeof(GameWorld).GetMethod("OnGameStarted", BindingFlags.Public | BindingFlags.NonPublic | BindingFlags.Instance);
     }
 
     [PatchPostfix]

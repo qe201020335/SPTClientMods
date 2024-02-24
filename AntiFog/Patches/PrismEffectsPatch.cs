@@ -12,7 +12,7 @@ public class PrismEffectsPatch : ModulePatch
 {
     protected override MethodBase GetTargetMethod()
     {
-        return typeof(PrismEffects).GetMethod("OnEnable", BindingFlags.Instance | BindingFlags.Public);
+        return typeof(PrismEffects).GetMethod("OnEnable", BindingFlags.Public | BindingFlags.NonPublic | BindingFlags.Instance);
     }
     
     [PatchPostfix]
