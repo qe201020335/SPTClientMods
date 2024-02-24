@@ -1,19 +1,7 @@
-﻿using Aki.Common.Utils;
-using Aki.Reflection.Patching;
-using BepInEx;
+﻿using BepInEx;
 using BepInEx.Configuration;
-using System;
-using System.Collections.Generic;
-using System.IO;
-using System.Reflection;
-using System.Linq;
-using System.Reflection.Emit;
 using UnityEngine;
-using EFT;
-using System.Threading.Tasks;
-using Aki.Core.Patches;
 using AntiFog.Patches;
-using HarmonyLib;
 
 namespace AntiFog;
 

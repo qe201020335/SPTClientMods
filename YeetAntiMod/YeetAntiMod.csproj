@@ -20,7 +20,6 @@
     <PackageReference Include="BepInEx.Analyzers" Version="1.*" PrivateAssets="all"/>
     <PackageReference Include="BepInEx.Core" Version="5.*"/>
     <PackageReference Include="BepInEx.PluginInfoProps" Version="2.*"/>
-    <PackageReference Include="UnityEngine.Modules" Version="5.6.0" IncludeAssets="compile"/>
   </ItemGroup>
 
   <ItemGroup Condition="'$(TargetFramework.TrimEnd(`0123456789`))' == 'net'">
@@ -30,12 +29,19 @@
   <ItemGroup>
     <Reference Include="aki-core">
       <HintPath>..\References\aki-core.dll</HintPath>
-    </Reference>
-    <Reference Include="Aki.Common">
-      <HintPath>..\References\Aki.Common.dll</HintPath>
+      <Private>False</Private>
     </Reference>
     <Reference Include="Aki.Reflection">
       <HintPath>..\References\Aki.Reflection.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="UnityEngine">
+      <HintPath>..\References\UnityEngine.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="UnityEngine.CoreModule">
+      <HintPath>..\References\UnityEngine.CoreModule.dll</HintPath>
+      <Private>False</Private>
     </Reference>
   </ItemGroup>
 </Project>
