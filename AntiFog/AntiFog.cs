@@ -3,80 +3,58 @@ using UnityEngine.SceneManagement;
 using System;
 using System.Collections.Generic;
 using BSG.CameraEffects;
+using Comfort.Common;
 using HarmonyLib;
 using EFT;
+using UnityEngine.Serialization;
 
 namespace AntiFog;
 
 public class AntiFog : MonoBehaviour
 {
-    public static LocalPlayer localPlayer;
     private static GameObject FPSCamera;
     private static Camera FPSCameraCamera;
 
-    private static object mBOIT_Scattering;
-    private static CustomGlobalFog FPSCameraCustomGlobalFog;
-    private static Behaviour FPSCameraGlobalFog;
+    private CustomGlobalFog FPSCameraCustomGlobalFog;
     public static NightVision FPSCameraNightVision;
-    public static float defaultNightVisionNoiseIntensity;
-    public static string scene;
+    private string _scene;
+    
+    private MBOIT_Scattering _mboitScattering;
     private static float defaultMBOITZeroLevel;
+    private static float defaultLevelSettingsZeroLevel;
 
-    private static bool defaultFPSCameraCustomGlobalFog;
-    private static bool defaultFPSCameraGlobalFog;
+    private Tuple<bool, float> defaultFPSCameraCustomGlobalFog;
 
+    public bool NVG = false;
 
-    private static Dictionary<string, string> sceneLevelSettings = new Dictionary<string, string>();
+    public bool IsActive { get; private set; } = false;
 
-    public static bool NVG = false;
+    private LevelSettings _levelSettings;
+    private float _zeroLevelOffset;
 
-    public bool GraphicsMode = false;
-
-    public void Start()
+    private void Awake()
     {
-        sceneLevelSettings.Add("City_Scripts", "---City_ levelsettings ---");
-        sceneLevelSettings.Add("Laboratory_Scripts", "---Laboratory_levelsettings---");
-        sceneLevelSettings.Add("custom_Light", "---Custom_levelsettings---");
-        sceneLevelSettings.Add("Factory_Day", "---FactoryDay_levelsettings---");
-        sceneLevelSettings.Add("Factory_Night", "---FactoryNight_levelsettings---");
-        sceneLevelSettings.Add("Lighthouse_Abadonned_pier", "---Lighthouse_levelsettings---");
-        sceneLevelSettings.Add("Shopping_Mall_Terrain", "---Interchange_levelsettings---");
-        sceneLevelSettings.Add("woods_combined", "---Woods_levelsettings---");
-        sceneLevelSettings.Add("Reserve_Base_DesignStuff", "---Reserve_levelsettings---");
-        sceneLevelSettings.Add("shoreline_scripts", "---ShoreLine_levelsettings---");
-        sceneLevelSettings.Add("default", "!settings");
-
-        Plugin.NVGCustomGlobalFogIntensity.SettingChanged += SettingsUpdated;
-        Plugin.CustomGlobalFogIntensity.SettingChanged += SettingsUpdated;
-
-
-        Plugin.StreetsFogLevel.SettingChanged += SettingsUpdated;
-        Plugin.CustomsFogLevel.SettingChanged += SettingsUpdated;
-        Plugin.LighthouseFogLevel.SettingChanged += SettingsUpdated;
-        Plugin.InterchangeFogLevel.SettingChanged += SettingsUpdated;
-        Plugin.WoodsFogLevel.SettingChanged += SettingsUpdated;
-        Plugin.ReserveFogLevel.SettingChanged += SettingsUpdated;
-        Plugin.ShorelineFogLevel.SettingChanged += SettingsUpdated;
+        Plugin.Instance.Config.SettingChanged += SettingsUpdated;
     }
 
     public void Update()
     {
         if (Input.GetKeyDown(Plugin.GraphicsToggle.Value.MainKey) && (!Input.GetKey(KeyCode.LeftShift)) && FPSCamera != null)
         {
-            if (GraphicsMode)
+            if (IsActive)
             {
-                GraphicsMode = false;
+                IsActive = false;
                 ResetGraphics();
             }
             else
             {
-                GraphicsMode = true;
-                UpdateAmandsGraphics();
+                IsActive = true;
+                UpdateComponentValues();
             }
         }
     }
 
-    public void ActivateAmandsGraphics(GameObject fpscamera, PrismEffects prismeffects)
+    public void InitComponents(GameObject fpscamera, PrismEffects prismeffects)
     {
         if (FPSCamera != null) return;
 
@@ -89,123 +67,110 @@ public class AntiFog : MonoBehaviour
             FPSCameraCamera = FPSCamera.GetComponent<Camera>();
         }
 
-        scene = SceneManager.GetActiveScene().name;
-        if (!sceneLevelSettings.ContainsKey(scene)) scene = "default";
+        _scene = SceneManager.GetActiveScene().name;
 
         FPSCameraCustomGlobalFog = FPSCamera.GetComponent<CustomGlobalFog>();
+        
+        _mboitScattering = FPSCamera.GetComponent<MBOIT_Scattering>();
+        defaultMBOITZeroLevel = _mboitScattering.ZeroLevel;
+        
         if (FPSCameraCustomGlobalFog != null)
         {
-            defaultFPSCameraCustomGlobalFog = FPSCameraCustomGlobalFog.enabled;
+            defaultFPSCameraCustomGlobalFog = new Tuple<bool, float>(FPSCameraCustomGlobalFog.enabled, FPSCameraCustomGlobalFog.FuncStart);
         }
+        
 
-        foreach (Component component in FPSCamera.GetComponents<Component>())
-        {
-            if (component.ToString() == "FPS Camera (UnityStandardAssets.ImageEffects.GlobalFog)")
-            {
-                FPSCameraGlobalFog = component as Behaviour;
-                defaultFPSCameraGlobalFog = FPSCameraGlobalFog.enabled;
-                break;
-            }
-
-            if (component.ToString() == "FPS Camera (MBOIT_Scattering)")
-            {
-                mBOIT_Scattering = component;
-                if (mBOIT_Scattering != null)
-                {
-                    defaultMBOITZeroLevel = Traverse.Create(mBOIT_Scattering).Field("ZeroLevel").GetValue<float>();
-                }
-            }
-        }
-
+        _levelSettings = Singleton<LevelSettings>.Instance;
+        defaultLevelSettingsZeroLevel = _levelSettings.ZeroLevel;
+        
         FPSCameraNightVision = FPSCamera.GetComponent<NightVision>();
         if (FPSCameraNightVision != null)
         {
             NVG = FPSCameraNightVision.On;
         }
 
-        GraphicsMode = true;
-        UpdateAmandsGraphics();
+        UpdateSettings();
+        
+        IsActive = true;
+        enabled = true;
+        UpdateComponentValues();
     }
 
-
-    public void UpdateAmandsGraphics()
+    private void UpdateSettings()
     {
-        if (mBOIT_Scattering != null)
+        _zeroLevelOffset = 0;
+        switch(_scene)
         {
-            switch (scene)
-            {
-                case "City_Scripts":
-                    Traverse.Create(mBOIT_Scattering).Field("ZeroLevel").SetValue(defaultMBOITZeroLevel + Plugin.StreetsFogLevel.Value);
-                    break;
-                case "Laboratory_Scripts":
-                    break;
-                case "custom_Light":
-                    Traverse.Create(mBOIT_Scattering).Field("ZeroLevel").SetValue(defaultMBOITZeroLevel + Plugin.CustomsFogLevel.Value);
-                    break;
-                case "Lighthouse_Abadonned_pier":
-                    Traverse.Create(mBOIT_Scattering).Field("ZeroLevel").SetValue(defaultMBOITZeroLevel + Plugin.LighthouseFogLevel.Value);
-                    break;
-                case "Shopping_Mall_Terrain":
-                    Traverse.Create(mBOIT_Scattering).Field("ZeroLevel").SetValue(defaultMBOITZeroLevel + Plugin.InterchangeFogLevel.Value);
-                    break;
-                case "woods_combined":
-                    Traverse.Create(mBOIT_Scattering).Field("ZeroLevel").SetValue(defaultMBOITZeroLevel + Plugin.WoodsFogLevel.Value);
-                    break;
-                case "Reserve_Base_DesignStuff":
-                    Traverse.Create(mBOIT_Scattering).Field("ZeroLevel").SetValue(defaultMBOITZeroLevel + Plugin.ReserveFogLevel.Value);
-                    break;
-                case "shoreline_scripts":
-                    Traverse.Create(mBOIT_Scattering).Field("ZeroLevel").SetValue(defaultMBOITZeroLevel + Plugin.ShorelineFogLevel.Value);
-                    break;
-            }
+            case "City_Scripts":
+                _zeroLevelOffset = Plugin.StreetsFogLevel.Value;
+                break;
+            case "Laboratory_Scripts":
+                break;
+            case "custom_Light":
+                _zeroLevelOffset = Plugin.CustomsFogLevel.Value;
+                break;
+            case "Lighthouse_Abadonned_pier":
+                _zeroLevelOffset = Plugin.LighthouseFogLevel.Value;
+                break;
+            case "Shopping_Mall_Terrain":
+                _zeroLevelOffset = Plugin.InterchangeFogLevel.Value;
+                break;
+            case "woods_combined":
+                _zeroLevelOffset = Plugin.WoodsFogLevel.Value;
+                break;
+            case "Reserve_Base_DesignStuff":
+                _zeroLevelOffset = Plugin.ReserveFogLevel.Value;
+                break;
+            case "shoreline_scripts":
+                _zeroLevelOffset = Plugin.ShorelineFogLevel.Value;
+                break;
+            default:
+                Plugin.Log.LogWarning($"Unknown map <{_scene}>, using everywhere else fog level.");
+                _zeroLevelOffset = Plugin.EverywhereElseFogLevel.Value;
+                break;
         }
+    }
+    
+
+    public void UpdateComponentValues()
+    {
+        if (_levelSettings != null) _levelSettings.ZeroLevel = defaultLevelSettingsZeroLevel + _zeroLevelOffset;
+        
+        if (_mboitScattering != null) _mboitScattering.ZeroLevel = defaultMBOITZeroLevel + _zeroLevelOffset;
 
         if (FPSCameraCustomGlobalFog != null)
         {
-            FPSCameraCustomGlobalFog.enabled = (scene == "Factory_Day" || scene == "Factory_Night" || scene == "default")
-                ? false
-                : defaultFPSCameraCustomGlobalFog;
+            FPSCameraCustomGlobalFog.enabled = !(_scene == "Factory_Day" || _scene == "Factory_Night" || _scene == "default") && defaultFPSCameraCustomGlobalFog.Item1;
             FPSCameraCustomGlobalFog.FuncStart = NVG ? Plugin.NVGCustomGlobalFogIntensity.Value : Plugin.CustomGlobalFogIntensity.Value;
             FPSCameraCustomGlobalFog.BlendMode = CustomGlobalFog.BlendModes.Normal;
-        }
-
-        if (FPSCameraGlobalFog != null)
-        {
-            FPSCameraGlobalFog.enabled = false;
         }
     }
 
     private void ResetGraphics()
     {
-        if (mBOIT_Scattering != null)
+        if (_levelSettings != null)
         {
-            Traverse.Create(mBOIT_Scattering).Field("ZeroLevel").SetValue(defaultMBOITZeroLevel);
+            _levelSettings.ZeroLevel = defaultLevelSettingsZeroLevel;
         }
 
-        if (FPSCameraNightVision)
+        if (_mboitScattering != null)
         {
-            FPSCameraNightVision.NoiseIntensity = defaultNightVisionNoiseIntensity;
-            FPSCameraNightVision.ApplySettings();
+            _mboitScattering.ZeroLevel = defaultMBOITZeroLevel;
         }
 
         if (FPSCameraCustomGlobalFog != null)
         {
-            FPSCameraCustomGlobalFog.enabled = defaultFPSCameraCustomGlobalFog;
-            FPSCameraCustomGlobalFog.FuncStart = 1f;
-            FPSCameraCustomGlobalFog.BlendMode = CustomGlobalFog.BlendModes.Lighten;
-        }
-
-        if (FPSCameraGlobalFog != null)
-        {
-            FPSCameraGlobalFog.enabled = defaultFPSCameraGlobalFog;
+            FPSCameraCustomGlobalFog.enabled = defaultFPSCameraCustomGlobalFog.Item1;
+            FPSCameraCustomGlobalFog.FuncStart = defaultFPSCameraCustomGlobalFog.Item2;
         }
     }
 
     private void SettingsUpdated(object sender, EventArgs e)
     {
-        if (GraphicsMode)
+        UpdateSettings();
+        if (IsActive)
         {
-            UpdateAmandsGraphics();
+            UpdateComponentValues();
         }
     }
 }

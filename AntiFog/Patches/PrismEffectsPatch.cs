@@ -20,11 +20,10 @@ public class PrismEffectsPatch : ModulePatch
     {
         if (__instance.gameObject.name == "FPS Camera")
         {
-            Plugin.AntiFog.GraphicsMode = false;
             Task.Factory.StartNew(async () =>
             {
                 await Task.Delay(100);
-                Plugin.AntiFog.ActivateAmandsGraphics(__instance.gameObject, __instance);
+                Plugin.AntiFog.InitComponents(__instance.gameObject, __instance);
             });
         }
     }

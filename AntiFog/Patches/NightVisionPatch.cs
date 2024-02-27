@@ -1,5 +1,6 @@
 ﻿using System.Linq;
 using System.Reflection;
+using BSG.CameraEffects;
 #if SIT
 using StayInTarkov;
 #elif AKI
@@ -12,19 +13,17 @@ public class NightVisionPatch : ModulePatch
 {
     protected override MethodBase GetTargetMethod()
     {
-        return typeof(BSG.CameraEffects.NightVision)
+        return typeof(NightVision)
             .GetMethods(BindingFlags.Public | BindingFlags.NonPublic | BindingFlags.Instance)
             .First(x => x.GetParameters().Count() == 1 && x.GetParameters()[0].Name == "on" && x.Name != "StartSwitch");
     }
     
     [PatchPostfix]
-    private static void PatchPostFix(ref BSG.CameraEffects.NightVision __instance, bool on)
+    private static void PatchPostFix(ref NightVision __instance, bool on)
     {
-        if (Plugin.AntiFog.GraphicsMode && AntiFog.localPlayer != null && AntiFog.NVG != on && AntiFog.FPSCameraNightVision != null)
+        if (Plugin.AntiFog.IsActive && Plugin.AntiFog.NVG != on && AntiFog.FPSCameraNightVision != null)
         {
-            AntiFog.NVG = on;
-            Plugin.AntiFog.UpdateAmandsGraphics();
+            Plugin.AntiFog.NVG = on;
         }
-        AntiFog.NVG = on;
     }
 }
