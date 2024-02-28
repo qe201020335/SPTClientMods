@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
+using Comfort.Common;
 using EFT;
 using EFT.Interactive;
 using UnityEngine;
@@ -25,6 +26,12 @@ public class GameStartPatch : ModulePatch
     [PatchPostfix]
     private static void UnlockThings()
     {
+        var hasTheKey = Singleton<GameWorld>.Instance.MainPlayer.Profile.Inventory.Equipment.GetAllItems().Any(item => item.TemplateId == KeyId);
+        if (!hasTheKey)
+        {
+            return;
+        }
+        
         var allDoors = Object.FindObjectsOfType<Door>().Cast<WorldInteractiveObject>(); // mechanical doors
         var allKeyContainers = Object.FindObjectsOfType<LootableContainer>().Cast<WorldInteractiveObject>(); // locked loot containers
         var allTrunks = Object.FindObjectsOfType<Trunk>().Cast<WorldInteractiveObject>(); // locked car trunks
