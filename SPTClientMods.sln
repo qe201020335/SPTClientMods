@@ -6,6 +6,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "YeetAntiMod", "YeetAntiMod\
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SkeletonKey", "SkeletonKey\SkeletonKey.csproj", "{B7D64D02-D812-41ED-8D41-0AE0CFBCB447}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AirdropSummoner", "AirdropSummoner\AirdropSummoner.csproj", "{81B8073F-70FE-4E22-8CCA-62014AFF2466}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug SIT|Any CPU = Debug SIT|Any CPU
@@ -22,5 +24,9 @@ Global
 		{B7D64D02-D812-41ED-8D41-0AE0CFBCB447}.Debug AKi|Any CPU.Build.0 = Debug AKi|Any CPU
 		{92F5A0FF-C4E5-4207-A0EA-24BF347211D4}.Debug AKi|Any CPU.ActiveCfg = Debug|Any CPU
 		{92F5A0FF-C4E5-4207-A0EA-24BF347211D4}.Debug AKi|Any CPU.Build.0 = Debug|Any CPU
+		{81B8073F-70FE-4E22-8CCA-62014AFF2466}.Debug SIT|Any CPU.ActiveCfg = Debug SIT|Any CPU
+		{81B8073F-70FE-4E22-8CCA-62014AFF2466}.Debug SIT|Any CPU.Build.0 = Debug SIT|Any CPU
+		{81B8073F-70FE-4E22-8CCA-62014AFF2466}.Debug AKi|Any CPU.ActiveCfg = Debug AKi|Any CPU
+		{81B8073F-70FE-4E22-8CCA-62014AFF2466}.Debug AKi|Any CPU.Build.0 = Debug AKi|Any CPU
 	EndGlobalSection
 EndGlobal
