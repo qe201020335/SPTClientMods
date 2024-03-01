@@ -8,6 +8,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SkeletonKey", "SkeletonKey\
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AirdropSummoner", "AirdropSummoner\AirdropSummoner.csproj", "{81B8073F-70FE-4E22-8CCA-62014AFF2466}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EasyQTE", "EasyQTE\EasyQTE.csproj", "{0BA7A8AB-30B6-410F-B346-BEF8FAF4B3A4}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug SIT|Any CPU = Debug SIT|Any CPU
@@ -28,5 +30,9 @@ Global
 		{81B8073F-70FE-4E22-8CCA-62014AFF2466}.Debug SIT|Any CPU.Build.0 = Debug SIT|Any CPU
 		{81B8073F-70FE-4E22-8CCA-62014AFF2466}.Debug AKi|Any CPU.ActiveCfg = Debug AKi|Any CPU
 		{81B8073F-70FE-4E22-8CCA-62014AFF2466}.Debug AKi|Any CPU.Build.0 = Debug AKi|Any CPU
+		{0BA7A8AB-30B6-410F-B346-BEF8FAF4B3A4}.Debug SIT|Any CPU.ActiveCfg = Debug SIT|Any CPU
+		{0BA7A8AB-30B6-410F-B346-BEF8FAF4B3A4}.Debug SIT|Any CPU.Build.0 = Debug SIT|Any CPU
+		{0BA7A8AB-30B6-410F-B346-BEF8FAF4B3A4}.Debug AKi|Any CPU.ActiveCfg = Debug AKi|Any CPU
+		{0BA7A8AB-30B6-410F-B346-BEF8FAF4B3A4}.Debug AKi|Any CPU.Build.0 = Debug AKi|Any CPU
 	EndGlobalSection
 EndGlobal
