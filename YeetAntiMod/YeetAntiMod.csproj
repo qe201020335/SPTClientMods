@@ -31,6 +31,10 @@
       <HintPath>..\References.aki\aki-core.dll</HintPath>
       <Private>False</Private>
     </Reference>
+    <Reference Include="aki-debugging">
+      <HintPath>..\References.aki\aki-debugging.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
     <Reference Include="Aki.Reflection">
       <HintPath>..\References.aki\Aki.Reflection.dll</HintPath>
       <Private>False</Private>
