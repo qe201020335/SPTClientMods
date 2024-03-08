@@ -10,6 +10,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AirdropSummoner", "AirdropS
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EasyQTE", "EasyQTE\EasyQTE.csproj", "{0BA7A8AB-30B6-410F-B346-BEF8FAF4B3A4}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "YeetWatermark", "YeetWatermark\YeetWatermark.csproj", "{7CD71A03-04BE-43AB-A3A3-DD3C450D7DC3}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug SIT|Any CPU = Debug SIT|Any CPU
@@ -24,6 +26,8 @@ Global
 		{B7D64D02-D812-41ED-8D41-0AE0CFBCB447}.Debug SIT|Any CPU.Build.0 = Debug SIT|Any CPU
 		{B7D64D02-D812-41ED-8D41-0AE0CFBCB447}.Debug AKi|Any CPU.ActiveCfg = Debug AKi|Any CPU
 		{B7D64D02-D812-41ED-8D41-0AE0CFBCB447}.Debug AKi|Any CPU.Build.0 = Debug AKi|Any CPU
+		{92F5A0FF-C4E5-4207-A0EA-24BF347211D4}.Debug SIT|Any CPU.ActiveCfg = Debug|Any CPU
+		{92F5A0FF-C4E5-4207-A0EA-24BF347211D4}.Debug SIT|Any CPU.Build.0 = Debug|Any CPU
 		{92F5A0FF-C4E5-4207-A0EA-24BF347211D4}.Debug AKi|Any CPU.ActiveCfg = Debug|Any CPU
 		{92F5A0FF-C4E5-4207-A0EA-24BF347211D4}.Debug AKi|Any CPU.Build.0 = Debug|Any CPU
 		{81B8073F-70FE-4E22-8CCA-62014AFF2466}.Debug SIT|Any CPU.ActiveCfg = Debug SIT|Any CPU
@@ -34,5 +38,9 @@ Global
 		{0BA7A8AB-30B6-410F-B346-BEF8FAF4B3A4}.Debug SIT|Any CPU.Build.0 = Debug SIT|Any CPU
 		{0BA7A8AB-30B6-410F-B346-BEF8FAF4B3A4}.Debug AKi|Any CPU.ActiveCfg = Debug AKi|Any CPU
 		{0BA7A8AB-30B6-410F-B346-BEF8FAF4B3A4}.Debug AKi|Any CPU.Build.0 = Debug AKi|Any CPU
+		{7CD71A03-04BE-43AB-A3A3-DD3C450D7DC3}.Debug SIT|Any CPU.ActiveCfg = Debug|Any CPU
+		{7CD71A03-04BE-43AB-A3A3-DD3C450D7DC3}.Debug SIT|Any CPU.Build.0 = Debug|Any CPU
+		{7CD71A03-04BE-43AB-A3A3-DD3C450D7DC3}.Debug AKi|Any CPU.ActiveCfg = Debug|Any CPU
+		{7CD71A03-04BE-43AB-A3A3-DD3C450D7DC3}.Debug AKi|Any CPU.Build.0 = Debug|Any CPU
 	EndGlobalSection
 EndGlobal

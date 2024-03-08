@@ -13,21 +13,6 @@ public class Plugin : BaseUnityPlugin
         Logger.LogInfo($"Plugin {MyPluginInfo.PLUGIN_GUID} is loaded!");
         
         new AllowClientModsPatch().Enable();
-        new NoClientWatermarkPatch().Enable();
-    }
-}
-
-public class NoClientWatermarkPatch : ModulePatch
-{
-    protected override MethodBase GetTargetMethod()
-    {
-        return typeof(Aki.Debugging.Patches.DebugLogoPatch).GetMethod("PatchPrefix", BindingFlags.Static | BindingFlags.NonPublic | BindingFlags.Public);
-    }
-        
-    [PatchPrefix]
-    private static bool PatchPreFix()
-    {
-        return false;  // skip it
     }
 }
 
@@ -35,7 +20,7 @@ public class AllowClientModsPatch : ModulePatch
 {
     protected override MethodBase GetTargetMethod()
     {
-        return typeof(Aki.Core.Patches.PreventClientModsPatch).GetMethod("CheckForNonWhitelistedPlugins", BindingFlags.Static | BindingFlags.NonPublic);
+        return typeof(Aki.Core.Patches.PreventClientModsPatch).GetMethod("CheckForNonWhitelistedPlugins", BindingFlags.Static | BindingFlags.NonPublic | BindingFlags.Public);
     }
         
     [PatchPrefix]
