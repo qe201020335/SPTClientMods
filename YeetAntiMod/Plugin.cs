@@ -20,7 +20,7 @@ public class AllowClientModsPatch : ModulePatch
 {
     protected override MethodBase GetTargetMethod()
     {
-        return typeof(Aki.Core.Patches.PreventClientModsPatch).GetMethod("CheckForNonWhitelistedPlugins", BindingFlags.Static | BindingFlags.NonPublic | BindingFlags.Public);
+        return typeof(Aki.SinglePlayer.Patches.MainMenu.PreventClientModsPatch).GetMethod("CheckForNonWhitelistedPlugins", BindingFlags.Static | BindingFlags.NonPublic | BindingFlags.Public);
     }
         
     [PatchPrefix]

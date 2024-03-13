@@ -19,7 +19,7 @@ public class NoClientWatermarkPatch : ModulePatch
 {
     protected override MethodBase GetTargetMethod()
     {
-        return typeof(Aki.Debugging.Patches.DebugLogoPatch).GetMethod("PatchPrefix", BindingFlags.Static | BindingFlags.NonPublic | BindingFlags.Public);
+        return typeof(Aki.SinglePlayer.Patches.MainMenu.BetaLogoPatch).GetMethod("PatchPrefix", BindingFlags.Static | BindingFlags.NonPublic | BindingFlags.Public);
     }
         
     [PatchPrefix]
