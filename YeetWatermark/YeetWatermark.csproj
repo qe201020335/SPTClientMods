@@ -33,6 +33,7 @@
     </Reference>
     <Reference Include="aki-custom">
       <HintPath>..\References.aki\aki-custom.dll</HintPath>
+      <Private>False</Private>
     </Reference>
     <Reference Include="aki-debugging">
       <HintPath>..\References.aki\aki-debugging.dll</HintPath>
