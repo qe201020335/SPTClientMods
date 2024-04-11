@@ -1,0 +1,86 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <AssemblyName>qe201020335.github.com.opticTweaks</AssemblyName>
+    <Description>Tweak optic things</Description>
+    <Version>1.0.0</Version>
+    <Product>OpticTweaks</Product>
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+    <LangVersion>latest</LangVersion>
+    <RestoreAdditionalProjectSources>
+      https://api.nuget.org/v3/index.json;
+      https://nuget.bepinex.dev/v3/index.json;
+      https://nuget.samboy.dev/v3/index.json
+    </RestoreAdditionalProjectSources>
+    <Configurations>Debug SIT;Debug AKi</Configurations>
+    <Platforms>AnyCPU</Platforms>
+  </PropertyGroup>
+
+  <Choose>
+    <When Condition=" '$(Configuration)'=='Debug SIT' ">
+      <PropertyGroup>
+        <DefineConstants>SIT</DefineConstants>
+        <TargetFramework>net472</TargetFramework>
+        <RefDir>..\References.sit</RefDir>
+      </PropertyGroup>
+
+      <ItemGroup>
+        <Reference Include="StayInTarkov">
+          <HintPath>$(RefDir)\StayInTarkov.dll</HintPath>
+          <Private>False</Private>
+        </Reference>
+      </ItemGroup>
+    </When>
+
+    <When Condition=" '$(Configuration)'=='Debug AKi' ">
+      <PropertyGroup>
+        <DefineConstants>AKI</DefineConstants>
+        <TargetFramework>net471</TargetFramework>
+        <RefDir>..\References.aki</RefDir>
+      </PropertyGroup>
+
+      <ItemGroup>
+        <Reference Include="Aki.Reflection">
+          <HintPath>$(RefDir)\Aki.Reflection.dll</HintPath>
+          <Private>False</Private>
+        </Reference>
+      </ItemGroup>
+    </When>
+  </Choose>
+
+  <ItemGroup>
+    <PackageReference Include="BepInEx.Analyzers" Version="1.*" PrivateAssets="all"/>
+    <PackageReference Include="BepInEx.Core" Version="5.*"/>
+    <PackageReference Include="BepInEx.PluginInfoProps" Version="2.*"/>
+  </ItemGroup>
+
+  <ItemGroup Condition="'$(TargetFramework.TrimEnd(`0123456789`))' == 'net'">
+    <PackageReference Include="Microsoft.NETFramework.ReferenceAssemblies" Version="1.0.2" PrivateAssets="all"/>
+  </ItemGroup>
+
+  <ItemGroup>
+    <Reference Include="0Harmony">
+      <HintPath>$(RefDir)\0Harmony.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="Assembly-CSharp">
+      <HintPath>$(RefDir)\Assembly-CSharp.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="UnityEngine">
+      <HintPath>$(RefDir)\UnityEngine.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="UnityEngine.CoreModule">
+      <HintPath>$(RefDir)\UnityEngine.CoreModule.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="UnityEngine.InputLegacyModule">
+      <HintPath>$(RefDir)\UnityEngine.InputLegacyModule.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="Comfort">
+      <HintPath>$(RefDir)\Comfort.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+  </ItemGroup>
+</Project>

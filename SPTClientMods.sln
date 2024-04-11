@@ -12,6 +12,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EasyQTE", "EasyQTE\EasyQTE.
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "YeetWatermark", "YeetWatermark\YeetWatermark.csproj", "{7CD71A03-04BE-43AB-A3A3-DD3C450D7DC3}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OpticTweaks", "OpticTweaks\OpticTweaks.csproj", "{712109C8-C768-4AE6-84BB-983904794AED}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug SIT|Any CPU = Debug SIT|Any CPU
@@ -42,5 +44,9 @@ Global
 		{7CD71A03-04BE-43AB-A3A3-DD3C450D7DC3}.Debug SIT|Any CPU.Build.0 = Debug|Any CPU
 		{7CD71A03-04BE-43AB-A3A3-DD3C450D7DC3}.Debug AKi|Any CPU.ActiveCfg = Debug|Any CPU
 		{7CD71A03-04BE-43AB-A3A3-DD3C450D7DC3}.Debug AKi|Any CPU.Build.0 = Debug|Any CPU
+		{712109C8-C768-4AE6-84BB-983904794AED}.Debug SIT|Any CPU.ActiveCfg = Debug SIT|Any CPU
+		{712109C8-C768-4AE6-84BB-983904794AED}.Debug SIT|Any CPU.Build.0 = Debug SIT|Any CPU
+		{712109C8-C768-4AE6-84BB-983904794AED}.Debug AKi|Any CPU.ActiveCfg = Debug AKi|Any CPU
+		{712109C8-C768-4AE6-84BB-983904794AED}.Debug AKi|Any CPU.Build.0 = Debug AKi|Any CPU
 	EndGlobalSection
 EndGlobal
