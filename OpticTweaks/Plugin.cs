@@ -27,7 +27,7 @@ public class Plugin : BaseUnityPlugin
 public class OpticSightPatch : ModulePatch
 {
     
-    private static ManualLogSource Logger = BepInEx.Logging.Logger.CreateLogSource(nameof(OpticSightPatch));
+    private new static readonly ManualLogSource Logger = BepInEx.Logging.Logger.CreateLogSource(nameof(OpticSightPatch));
     
     protected override MethodBase GetTargetMethod()
     {
