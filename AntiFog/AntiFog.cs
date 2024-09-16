@@ -15,7 +15,7 @@ public class AntiFog : MonoBehaviour
     private static GameObject FPSCamera;
     private static Camera FPSCameraCamera;
 
-    private CustomGlobalFog FPSCameraCustomGlobalFog;
+    // private CustomGlobalFog FPSCameraCustomGlobalFog;
     public static NightVision FPSCameraNightVision;
     private string _scene;
     
@@ -69,15 +69,15 @@ public class AntiFog : MonoBehaviour
 
         _scene = SceneManager.GetActiveScene().name;
 
-        FPSCameraCustomGlobalFog = FPSCamera.GetComponent<CustomGlobalFog>();
+        // FPSCameraCustomGlobalFog = FPSCamera.GetComponent<CustomGlobalFog>();
         
         _mboitScattering = FPSCamera.GetComponent<MBOIT_Scattering>();
         defaultMBOITZeroLevel = _mboitScattering.ZeroLevel;
         
-        if (FPSCameraCustomGlobalFog != null)
-        {
-            defaultFPSCameraCustomGlobalFog = new Tuple<bool, float>(FPSCameraCustomGlobalFog.enabled, FPSCameraCustomGlobalFog.FuncStart);
-        }
+        // if (FPSCameraCustomGlobalFog != null)
+        // {
+        //     defaultFPSCameraCustomGlobalFog = new Tuple<bool, float>(FPSCameraCustomGlobalFog.enabled, FPSCameraCustomGlobalFog.FuncStart);
+        // }
         
 
         _levelSettings = Singleton<LevelSettings>.Instance;
@@ -138,12 +138,12 @@ public class AntiFog : MonoBehaviour
         
         if (_mboitScattering != null) _mboitScattering.ZeroLevel = defaultMBOITZeroLevel + _zeroLevelOffset;
 
-        if (FPSCameraCustomGlobalFog != null)
-        {
-            FPSCameraCustomGlobalFog.enabled = !(_scene == "Factory_Day" || _scene == "Factory_Night" || _scene == "default") && defaultFPSCameraCustomGlobalFog.Item1;
-            FPSCameraCustomGlobalFog.FuncStart = NVG ? Plugin.NVGCustomGlobalFogIntensity.Value : Plugin.CustomGlobalFogIntensity.Value;
-            FPSCameraCustomGlobalFog.BlendMode = CustomGlobalFog.BlendModes.Normal;
-        }
+        // if (FPSCameraCustomGlobalFog != null)
+        // {
+        //     FPSCameraCustomGlobalFog.enabled = !(_scene == "Factory_Day" || _scene == "Factory_Night" || _scene == "default") && defaultFPSCameraCustomGlobalFog.Item1;
+        //     FPSCameraCustomGlobalFog.FuncStart = NVG ? Plugin.NVGCustomGlobalFogIntensity.Value : Plugin.CustomGlobalFogIntensity.Value;
+        //     FPSCameraCustomGlobalFog.BlendMode = CustomGlobalFog.BlendModes.Normal;
+        // }
     }
 
     private void ResetGraphics()
@@ -158,11 +158,11 @@ public class AntiFog : MonoBehaviour
             _mboitScattering.ZeroLevel = defaultMBOITZeroLevel;
         }
 
-        if (FPSCameraCustomGlobalFog != null)
-        {
-            FPSCameraCustomGlobalFog.enabled = defaultFPSCameraCustomGlobalFog.Item1;
-            FPSCameraCustomGlobalFog.FuncStart = defaultFPSCameraCustomGlobalFog.Item2;
-        }
+        // if (FPSCameraCustomGlobalFog != null)
+        // {
+        //     FPSCameraCustomGlobalFog.enabled = defaultFPSCameraCustomGlobalFog.Item1;
+        //     FPSCameraCustomGlobalFog.FuncStart = defaultFPSCameraCustomGlobalFog.Item2;
+        // }
     }
 
     private void SettingsUpdated(object sender, EventArgs e)
