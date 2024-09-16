@@ -39,12 +39,12 @@
       </PropertyGroup>
 
       <ItemGroup>
-        <Reference Include="Aki.Reflection">
-          <HintPath>$(RefDir)\Aki.Reflection.dll</HintPath>
+        <Reference Include="spt-reflection">
+          <HintPath>$(RefDir)\spt-reflection.dll</HintPath>
           <Private>False</Private>
         </Reference>
-        <Reference Include="aki-custom">
-          <HintPath>$(RefDir)\aki-custom.dll</HintPath>
+        <Reference Include="spt-custom">
+          <HintPath>$(RefDir)\spt-custom.dll</HintPath>
           <Private>False</Private>
         </Reference>
       </ItemGroup>

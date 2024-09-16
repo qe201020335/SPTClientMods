@@ -1,5 +1,5 @@
 ﻿using System.Reflection;
-using Aki.Reflection.Patching;
+using SPT.Reflection.Patching;
 using BepInEx;
 
 namespace YeetWatermark;
@@ -19,7 +19,7 @@ public class NoClientWatermarkPatch : ModulePatch
 {
     protected override MethodBase GetTargetMethod()
     {
-        return typeof(Aki.SinglePlayer.Patches.MainMenu.BetaLogoPatch).GetMethod("PatchPrefix", BindingFlags.Static | BindingFlags.NonPublic | BindingFlags.Public);
+        return typeof(SPT.SinglePlayer.Patches.MainMenu.BetaLogoPatch).GetMethod("PatchPrefix", BindingFlags.Static | BindingFlags.NonPublic | BindingFlags.Public);
     }
         
     [PatchPrefix]

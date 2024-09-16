@@ -41,8 +41,8 @@
       </PropertyGroup>
 
       <ItemGroup>
-        <Reference Include="Aki.Reflection">
-          <HintPath>$(RefDir)\Aki.Reflection.dll</HintPath>
+        <Reference Include="spt-reflection">
+          <HintPath>$(RefDir)\spt-reflection.dll</HintPath>
           <Private>False</Private>
         </Reference>
       </ItemGroup>

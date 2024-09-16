@@ -8,7 +8,7 @@ using EFT.CameraControl;
 #if SIT
 using StayInTarkov;
 #elif AKI
-using Aki.Reflection.Patching;
+using SPT.Reflection.Patching;
 #endif
 
 namespace OpticTweaks;

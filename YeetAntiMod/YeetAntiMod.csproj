@@ -27,20 +27,20 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Reference Include="aki-core">
-      <HintPath>..\References.aki\aki-core.dll</HintPath>
+    <Reference Include="spt-core">
+      <HintPath>..\References.aki\spt-core.dll</HintPath>
       <Private>False</Private>
     </Reference>
-    <Reference Include="aki-custom">
-      <HintPath>..\References.aki\aki-custom.dll</HintPath>
+    <Reference Include="spt-custom">
+      <HintPath>..\References.aki\spt-custom.dll</HintPath>
       <Private>False</Private>
     </Reference>
-    <Reference Include="aki-debugging">
-      <HintPath>..\References.aki\aki-debugging.dll</HintPath>
+    <Reference Include="spt-debugging">
+      <HintPath>..\References.aki\spt-debugging.dll</HintPath>
       <Private>False</Private>
     </Reference>
-    <Reference Include="Aki.Reflection">
-      <HintPath>..\References.aki\Aki.Reflection.dll</HintPath>
+    <Reference Include="spt-reflection">
+      <HintPath>..\References.aki\spt-reflection.dll</HintPath>
       <Private>False</Private>
     </Reference>
     <Reference Include="UnityEngine">

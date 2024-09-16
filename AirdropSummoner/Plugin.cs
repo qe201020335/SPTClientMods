@@ -7,9 +7,9 @@ using EFT.Airdrop;
 using EFT.Console.Core;
 using EFT.UI;
 #if AKI
-using AirdropManager = Aki.Custom.Airdrops.AirdropsManager;
+using AirdropManager = SPT.Custom.Airdrops.AirdropsManager;
 #elif SIT
-using AirdropManager = Aki.Custom.Airdrops.SITAirdropsManager;
+using AirdropManager = SPT.Custom.Airdrops.SITAirdropsManager;
 #endif
 namespace AirdropSummoner;
 
