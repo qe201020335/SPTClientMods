@@ -16,14 +16,10 @@ namespace OpticTweaks;
 [BepInPlugin(MyPluginInfo.PLUGIN_GUID, MyPluginInfo.PLUGIN_NAME, MyPluginInfo.PLUGIN_VERSION)]
 public class Plugin : BaseUnityPlugin
 {
-    // internal static ConfigEntry<float> ThermalVisionDepthFade;
-    
     private void Awake()
     {
         // Plugin startup logic
         Logger.LogInfo($"Plugin {MyPluginInfo.PLUGIN_GUID} is loaded!");
-        
-        // ThermalVisionDepthFade = Config.Bind("ThermalVision", "DepthFade", 0.03f, "ThermalVision DepthFade");
         
         new OpticSightPatch().Enable();
         new ThermalVisionPatch().Enable();
@@ -107,11 +103,13 @@ public class OpticSightPatch : ModulePatch
         
         if (__instance.NightVision && __instance.NightVision.enabled)
         {
+            Logger.LogDebug("OpticSight with NightVision Awake");
             __instance.NightVision.NoiseIntensity = 0f;
         }
         
         if (__instance.ThermalVision && __instance.ThermalVision.enabled)
         {
+            Logger.LogDebug("OpticSight with ThermalVision Awake");
             if (__instance.ThermalVision.IsFpsStuck)
             {
                 Logger.LogDebug(
