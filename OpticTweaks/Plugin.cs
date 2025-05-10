@@ -121,6 +121,9 @@ public class OpticSightPatch : ModulePatch
             __instance.ThermalVision.IsNoisy = false;
             __instance.ThermalVision.IsPixelated = false;
             __instance.ThermalVision.ThermalVisionUtilities.DepthFade = 0;
+
+            Logger.LogDebug($"OpticSight ThermalVision clip plane was [{__instance.TemplateCamera.nearClipPlane} - {__instance.TemplateCamera.farClipPlane}]");
+            __instance.TemplateCamera.farClipPlane = 1000f;
         }
     }
 }
