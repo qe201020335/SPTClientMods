@@ -70,6 +70,10 @@
       <HintPath>$(RefDir)\Assembly-CSharp.dll</HintPath>
       <Private>False</Private>
     </Reference>
+    <Reference Include="Sirenix.Serialization">
+      <HintPath>$(RefDir)\Sirenix.Serialization.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
     <Reference Include="UnityEngine">
       <HintPath>$(RefDir)\UnityEngine.dll</HintPath>
       <Private>False</Private>

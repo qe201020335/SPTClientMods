@@ -93,37 +93,40 @@ public class OpticSightPatch : ModulePatch
     
     protected override MethodBase GetTargetMethod()
     {
-        return typeof(OpticSight).GetMethod("Awake", BindingFlags.Public | BindingFlags.NonPublic | BindingFlags.Instance);
+        return typeof(OpticComponentUpdater).GetMethod(nameof(OpticComponentUpdater.CopyComponentFromOptic), BindingFlags.Public | BindingFlags.NonPublic | BindingFlags.Instance);
     }
 
     [PatchPostfix]
-    private static void PatchPostfix(OpticSight __instance)
+    private static void PatchPostfix(OpticComponentUpdater __instance, OpticSight opticSight)
     {
+        Logger.LogDebug($"CopyComponentFromOptic from {opticSight.name}");
+        
         // Tweak sight parameters here
         
-        if (__instance.NightVision && __instance.NightVision.enabled)
+        if (__instance.nightVision_0.enabled)
         {
-            Logger.LogDebug("OpticSight with NightVision Awake");
-            __instance.NightVision.NoiseIntensity = 0f;
+            Logger.LogDebug("CopyComponentFromOptic with NightVision");
+            __instance.nightVision_0.NoiseIntensity = 0f;
+            __instance.nightVision_0.TextureMask = null;
         }
         
-        if (__instance.ThermalVision && __instance.ThermalVision.enabled)
+        if (__instance.thermalVision_0.enabled)
         {
-            Logger.LogDebug("OpticSight with ThermalVision Awake");
-            if (__instance.ThermalVision.IsFpsStuck)
+            Logger.LogDebug("CopyComponentFromOptic with ThermalVision");
+            if (__instance.thermalVision_0.IsFpsStuck)
             {
                 Logger.LogDebug(
-                    $"OpticSight {__instance.name} with Thermal Awake, fps is [{__instance.ThermalVision.StuckFpsUtilities.MinFramerate}, {__instance.ThermalVision.StuckFpsUtilities.MaxFramerate}]");
+                    $"OpticSight {__instance.name} with Thermal Awake, fps is [{__instance.thermalVision_0.StuckFpsUtilities.MinFramerate}, {__instance.thermalVision_0.StuckFpsUtilities.MaxFramerate}]");
             }
             
-            __instance.ThermalVision.IsFpsStuck = false;
-            __instance.ThermalVision.IsGlitch = false;
-            __instance.ThermalVision.IsNoisy = false;
-            __instance.ThermalVision.IsPixelated = false;
-            __instance.ThermalVision.ThermalVisionUtilities.DepthFade = 0;
+            __instance.thermalVision_0.IsFpsStuck = false;
+            __instance.thermalVision_0.IsGlitch = false;
+            __instance.thermalVision_0.IsNoisy = false;
+            __instance.thermalVision_0.IsPixelated = false;
+            __instance.thermalVision_0.ThermalVisionUtilities.DepthFade = 0;
 
-            Logger.LogDebug($"OpticSight ThermalVision clip plane was [{__instance.TemplateCamera.nearClipPlane} - {__instance.TemplateCamera.farClipPlane}]");
-            __instance.TemplateCamera.farClipPlane = 1000f;
+            Logger.LogDebug($"OpticSight ThermalVision clip plane was [{__instance.camera_0.nearClipPlane} - {__instance.camera_0.farClipPlane}]");
+            __instance.camera_0.farClipPlane = 1000f;
         }
     }
 }

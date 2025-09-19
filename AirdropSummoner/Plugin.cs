@@ -6,11 +6,6 @@ using EFT;
 using EFT.Airdrop;
 using EFT.Console.Core;
 using EFT.UI;
-#if AKI
-using AirdropManager = SPT.Custom.Airdrops.AirdropsManager;
-#elif SIT
-using AirdropManager = SPT.Custom.Airdrops.SITAirdropsManager;
-#endif
 namespace AirdropSummoner;
 
 [BepInPlugin(MyPluginInfo.PLUGIN_GUID, MyPluginInfo.PLUGIN_NAME, MyPluginInfo.PLUGIN_VERSION)]
@@ -40,15 +35,15 @@ internal class Commands
             ConsoleScreen.LogError("You are not in a raid!");
             return;
         }
-        
-        var hasAirdropPoints = LocationScene.GetAll<AirdropPoint>().Any();
-        if (!hasAirdropPoints)
+
+        if (gameWorld is not ClientGameWorld clientWorld)
         {
-            ConsoleScreen.LogError("Airdrop can't reach here!");
+            ConsoleScreen.LogError("You are not in a ClientGameWorld!");
             return;
         }
-        
-        gameWorld.gameObject.AddComponent<AirdropManager>().isFlareDrop = true;
+
+        var player = clientWorld.MainPlayer;
+        clientWorld.ClientSynchronizableObjectLogicProcessor.ServerAirdropManager.FlareSuccessEventHandler(player.ProfileId, player.Position, "");
         ConsoleScreen.Log("Airdrop summoned!");
     }
 }
